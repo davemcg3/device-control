@@ -9,6 +9,7 @@ export async function getDeviceInfo(ip, port) {
     // The return value is *not* serialized
     // You can return Date, Map, Set, etc.
     try {
+        console.log('ip: ', ip, ', port: ', port);
         const res = await fetch(`http://${ip}:${port}/query/device-info`, {
             cache: 'no-store',
         })
@@ -18,7 +19,7 @@ export async function getDeviceInfo(ip, port) {
             .then(data => {
                 return data
             });
-        console.log('res: ', res);
+        // console.log('res: ', res);
         // if (res?.status !== 200) {
         //     // This will activate the closest `error.js` Error Boundary
         //     console.log('Failed to fetch data')
@@ -26,7 +27,7 @@ export async function getDeviceInfo(ip, port) {
 
         return res
     } catch (e) {
-        // console.log('error: ', e);
+        console.log('error: ', e);
         console.log('caught error, returning false');
         return false
     }
@@ -111,7 +112,7 @@ export async function keypress(ip, port, key) {
         cache: 'no-store',
     })
         .then(response => response.text())
-        .then(response => parser.parse(response))
+        .then(response => parser.parse(response, ))
         .then(data => {
             return data
         });
@@ -120,6 +121,41 @@ export async function keypress(ip, port, key) {
     return res
 }
 
+export async function query(ip:String, port:Number, key:String) {
+    const parser = new XMLParser({
+        ignoreAttributes: false,
+    })
+
+    const res = await fetch(`http://${ip}:${port}/query/${key}`, {
+        cache: 'no-store',
+    })
+        .then(response => response.text())
+        .then(response => parser.parse(response))
+        .then(response => {
+            const {'?xml': _, ...rest} = response;
+            return rest;
+        })
+    console.log('res: ', res);
+
+    return res
+}
+
+export async function launch(ip:String, port:Number, app:String) {
+    const parser = new XMLParser()
+
+    const res = await fetch(`http://${ip}:${port}/launch/${app}`, {
+        method: 'POST',
+        cache: 'no-store',
+    })
+        .then(response => response.text())
+        .then(response => parser.parse(response))
+        .then(data => {
+            return data
+        });
+    console.log('res: ', res);
+
+    return res
+}
 
 // export default async function Page() {
 //     const data = await getData('10.0.0.162', '8060');

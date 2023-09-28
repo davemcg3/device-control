@@ -29,3 +29,15 @@ body {
 form input {
   color: black;
 }
+
+.filter-white {
+    filter: invert(100%) sepia(100%) saturate(0%) hue-rotate(305deg) brightness(103%) contrast(103%);
+}
+
+.filter-on {
+    filter: invert(21%) sepia(82%) saturate(6888%) hue-rotate(8deg) brightness(96%) contrast(134%);
+}
+
+.filter-off {
+    filter: invert(56%) sepia(62%) saturate(4218%) hue-rotate(89deg) brightness(121%) contrast(126%);
+}
