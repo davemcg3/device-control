@@ -9,9 +9,10 @@
     "lint": "next lint"
   },
   "dependencies": {
+    "fast-xml-parser": "latest",
+    "next": "latest",
     "react": "latest",
-    "react-dom": "latest",
-    "next": "latest"
+    "react-dom": "latest"
   },
   "devDependencies": {
     "typescript": "latest",
