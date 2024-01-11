@@ -53,7 +53,7 @@ function Roku() {
         callQuery(rokuIP, rokuPort, 'apps');
     }, [rokuIP, rokuPort]);
 
-    const handleChange = (event) => {
+    const handleChange = (event: Event) => {
         event.preventDefault();
         switch (event.target.name) {
             case "rokuIP":

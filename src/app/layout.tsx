@@ -18,11 +18,12 @@ export default function RootLayout({
     <html lang="en">
       <body className={inter.className}>
         <header className="static flex flex-col items-center justify-between p-4">
-            <h1 className="mb-3 text-3xl font-bold">Device Control</h1>
+            <a href="/"><h1 className="mb-3 text-3xl font-bold">Device Control</h1></a>
         </header>
         <nav className="flex flex-col items-center justify-between ">
             <ul>
                 <li><a href="/roku">Roku</a></li>
+                <li><a href="/sony">Sony Bravia</a></li>
             </ul>
         </nav>
         <main className="flex flex-col items-center justify-between p-1">
